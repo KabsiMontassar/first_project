@@ -13,10 +13,5 @@ class Restaurant {
     private String nom;
     private Long nbPlacesMax;
 
-    @ManyToOne
-    @JoinColumn(name = "idChaineRestauration")
-    private ChaineRestauration chaineRestauration;
 
-    @OneToMany(mappedBy = "restaurant")
-    private Set<Menu> menus;
 }

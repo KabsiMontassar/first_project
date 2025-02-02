@@ -12,6 +12,5 @@ class Composant {
     private String nomComposant;
     private Float prix;
 
-    @OneToMany(mappedBy = "composant")
-    private Set<DetailComposant> details;
+
 }

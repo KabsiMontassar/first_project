@@ -11,6 +11,4 @@ public class ChaineRestauration {
     private String libelle;
     private LocalDate dateCreation;
 
-    @OneToMany(mappedBy = "chaineRestauration", cascade = CascadeType.ALL)
-    private Set<Restaurant> restaurants;
 }

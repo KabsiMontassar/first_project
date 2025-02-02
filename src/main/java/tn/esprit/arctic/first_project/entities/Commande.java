@@ -17,15 +17,5 @@ class Commande {
     private Float totalCommande;
     private Long note;
 
-    @ManyToOne
-    @JoinColumn(name = "idClient")
-    private Client client;
 
-    @ManyToMany
-    @JoinTable(
-            name = "CommandeMenu",
-            joinColumns = @JoinColumn(name = "idCommande"),
-            inverseJoinColumns = @JoinColumn(name = "idMenu")
-    )
-    private Set<Menu> menus;
 }

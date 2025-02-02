@@ -13,6 +13,5 @@ class Client {
     private String identifiant;
     private LocalDate datePremiereVisite;
 
-    @OneToMany(mappedBy = "client")
-    private Set<Commande> commandes;
+
 }

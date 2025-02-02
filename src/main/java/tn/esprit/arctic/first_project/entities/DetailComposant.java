@@ -8,9 +8,7 @@ class DetailComposant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetailComposant;
     private Float imc;
-    private String typeComposant;
+    private TypeComposant typeComposant;
 
-    @ManyToOne
-    @JoinColumn(name = "idComposant")
-    private Composant composant;
+
 }

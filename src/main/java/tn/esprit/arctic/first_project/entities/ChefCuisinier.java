@@ -12,5 +12,5 @@ class ChefCuisinier {
     private Long idChefCuisinier;
     private String nom;
     private String prenom;
-    private String typeChef;
+    private TypeChef typeChef;
 }
