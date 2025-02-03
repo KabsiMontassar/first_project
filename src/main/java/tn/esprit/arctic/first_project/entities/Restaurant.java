@@ -14,4 +14,11 @@ class Restaurant {
     private Long nbPlacesMax;
 
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Menu> menus;
+
+    @ManyToOne
+    ChaineRestauration chainerestauration;
+
+
 }

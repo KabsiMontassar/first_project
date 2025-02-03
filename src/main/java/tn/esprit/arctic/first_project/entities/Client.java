@@ -13,5 +13,6 @@ class Client {
     private String identifiant;
     private LocalDate datePremiereVisite;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+    private Set<Commande> commandes;
 }

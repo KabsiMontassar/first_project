@@ -12,5 +12,10 @@ class Composant {
     private String nomComposant;
     private Float prix;
 
+    @OneToOne
+    private DetailComposant detailcomposant;
+
+    @ManyToOne
+    Menu menu;
 
 }
