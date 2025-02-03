@@ -13,5 +13,4 @@ class ChefCuisinier {
     private String nom;
     private String prenom;
     private TypeChef typeChef;
-    //hello
 }
