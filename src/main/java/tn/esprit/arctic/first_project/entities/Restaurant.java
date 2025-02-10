@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.Set;
 
 @Entity
-class Restaurant {
+public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRestaurant;

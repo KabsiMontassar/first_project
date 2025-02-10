@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-class Client {
+public class Client {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClient;
     private String identifiant;

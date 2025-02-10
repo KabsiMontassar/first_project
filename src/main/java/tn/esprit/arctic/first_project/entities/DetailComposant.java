@@ -3,7 +3,7 @@ package tn.esprit.arctic.first_project.entities;
 import jakarta.persistence.*;
 
 @Entity
-class DetailComposant {
+public class DetailComposant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetailComposant;

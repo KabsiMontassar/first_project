@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-class Composant {
+public class Composant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComposant;

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-class Commande {
+public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCommande;
