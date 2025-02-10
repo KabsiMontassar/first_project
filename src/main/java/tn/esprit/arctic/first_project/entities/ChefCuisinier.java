@@ -1,9 +1,8 @@
 package tn.esprit.arctic.first_project.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class ChefCuisinier {
@@ -12,5 +11,11 @@ public class ChefCuisinier {
     private Long idChefCuisinier;
     private String nom;
     private String prenom;
+    @Enumerated(EnumType.STRING)
     private TypeChef typeChef;
+
+
+
+    @ManyToMany(mappedBy="chefCuisiniers", cascade = CascadeType.ALL)
+    private Set<Menu> menus;
 }
