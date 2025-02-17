@@ -1,6 +1,7 @@
 package tn.esprit.arctic.first_project.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Menu;
 import tn.esprit.arctic.first_project.repositories.MenuRepository;
@@ -38,4 +39,10 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> findAll() {
         return menuRepository.findAll();
     }
+
+
+
+
+
+
 }

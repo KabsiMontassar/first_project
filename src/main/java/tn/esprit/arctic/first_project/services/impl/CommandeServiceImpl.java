@@ -38,4 +38,9 @@ public class CommandeServiceImpl implements CommandeService {
     public List<Commande> findAll() {
         return commandeRepository.findAll();
     }
+
+
+    public List<Commande> findByClientId(Long id) {
+        return commandeRepository.findByClientId(id);
+    }
 }
