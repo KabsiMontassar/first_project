@@ -1,17 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Commande;
 import tn.esprit.arctic.first_project.repositories.CommandeRepository;
-import tn.esprit.arctic.first_project.services.CommandeService;
+import tn.esprit.arctic.first_project.services.ICommandeService;
 
 import java.util.List;
 
 @Service
-public class CommandeServiceImpl implements CommandeService {
+@AllArgsConstructor
 
-    @Autowired
+public class CommandeService implements ICommandeService {
+
     private CommandeRepository commandeRepository;
 
     @Override
@@ -41,6 +42,6 @@ public class CommandeServiceImpl implements CommandeService {
 
 
     public List<Commande> findByClientId(Long id) {
-        return commandeRepository.findByClientId(id);
+        return commandeRepository.findByClientIdClient(id);
     }
 }

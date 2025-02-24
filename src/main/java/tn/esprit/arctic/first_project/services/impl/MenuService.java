@@ -1,18 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Menu;
 import tn.esprit.arctic.first_project.repositories.MenuRepository;
-import tn.esprit.arctic.first_project.services.MenuService;
+import tn.esprit.arctic.first_project.services.IMenuService;
 
 import java.util.List;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+@AllArgsConstructor
 
-    @Autowired
+public class MenuService implements IMenuService {
+
     private MenuRepository menuRepository;
 
     @Override

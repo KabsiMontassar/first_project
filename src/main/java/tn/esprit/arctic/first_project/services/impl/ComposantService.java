@@ -1,17 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Composant;
 import tn.esprit.arctic.first_project.repositories.ComposantRepository;
-import tn.esprit.arctic.first_project.services.ComposantService;
+import tn.esprit.arctic.first_project.services.IComposantService;
 
 import java.util.List;
 
 @Service
-public class ComposantServiceImpl implements ComposantService {
+@AllArgsConstructor
 
-    @Autowired
+public class ComposantService implements IComposantService {
+
     private ComposantRepository composantRepository;
 
     @Override

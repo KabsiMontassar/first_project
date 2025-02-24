@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.Composant;
 
 import java.util.List;
 
-public interface ComposantService {
+public interface IComposantService {
     Composant save(Composant composant);
     Composant update(Composant composant);
     void delete(Long id);

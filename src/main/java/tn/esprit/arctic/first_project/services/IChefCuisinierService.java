@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.ChefCuisinier;
 
 import java.util.List;
 
-public interface ChefCuisinierService {
+public interface IChefCuisinierService {
     ChefCuisinier save(ChefCuisinier chefCuisinier);
     ChefCuisinier update(ChefCuisinier chefCuisinier);
     void delete(Long id);

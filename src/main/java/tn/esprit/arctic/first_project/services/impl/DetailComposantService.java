@@ -1,17 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.DetailComposant;
 import tn.esprit.arctic.first_project.repositories.DetailComposantRepository;
-import tn.esprit.arctic.first_project.services.DetailComposantService;
+import tn.esprit.arctic.first_project.services.IDetailComposantService;
 
 import java.util.List;
 
 @Service
-public class DetailComposantServiceImpl implements DetailComposantService {
+@AllArgsConstructor
 
-    @Autowired
+public class DetailComposantService implements IDetailComposantService {
+
     private DetailComposantRepository detailComposantRepository;
 
     @Override

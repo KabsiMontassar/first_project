@@ -1,17 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Restaurant;
 import tn.esprit.arctic.first_project.repositories.RestaurantRepository;
-import tn.esprit.arctic.first_project.services.RestaurantService;
+import tn.esprit.arctic.first_project.services.IRestaurantService;
 
 import java.util.List;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService {
+@AllArgsConstructor
 
-    @Autowired
+public class RestaurantService implements IRestaurantService {
+
     private RestaurantRepository restaurantRepository;
 
     @Override

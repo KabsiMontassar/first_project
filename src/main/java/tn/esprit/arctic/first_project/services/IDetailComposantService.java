@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.DetailComposant;
 
 import java.util.List;
 
-public interface DetailComposantService {
+public interface IDetailComposantService {
     DetailComposant save(DetailComposant detailComposant);
     DetailComposant update(DetailComposant detailComposant);
     void delete(Long id);

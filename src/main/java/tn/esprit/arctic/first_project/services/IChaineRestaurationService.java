@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.ChaineRestauration;
 
 import java.util.List;
 
-public interface ChaineRestaurationService {
+public interface IChaineRestaurationService {
     ChaineRestauration save(ChaineRestauration chaineRestauration);
     ChaineRestauration update(ChaineRestauration chaineRestauration);
     void delete(Long id);

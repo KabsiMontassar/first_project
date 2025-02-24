@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.Menu;
 
 import java.util.List;
 
-public interface MenuService {
+public interface IMenuService {
     Menu save(Menu menu);
     Menu update(Menu menu);
     void delete(Long id);

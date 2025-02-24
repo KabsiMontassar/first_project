@@ -1,17 +1,17 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.ChaineRestauration;
 import tn.esprit.arctic.first_project.repositories.ChaineRestaurationRepository;
-import tn.esprit.arctic.first_project.services.ChaineRestaurationService;
+import tn.esprit.arctic.first_project.services.IChaineRestaurationService;
 
 import java.util.List;
 
 @Service
-public class ChaineRestaurationServiceImpl implements ChaineRestaurationService {
+@AllArgsConstructor
+public class ChaineRestaurationService implements IChaineRestaurationService {
 
-    @Autowired
     private ChaineRestaurationRepository chaineRestaurationRepository;
 
     @Override

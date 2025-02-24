@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.Client;
 
 import java.util.List;
 
-public interface ClientService {
+public interface IClientService {
     Client save(Client client);
     Client update(Client client);
     void delete(Long id);

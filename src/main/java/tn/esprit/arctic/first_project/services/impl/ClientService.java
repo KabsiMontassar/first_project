@@ -1,17 +1,18 @@
 package tn.esprit.arctic.first_project.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Client;
 import tn.esprit.arctic.first_project.repositories.ClientRepository;
-import tn.esprit.arctic.first_project.services.ClientService;
+import tn.esprit.arctic.first_project.services.IClientService;
 
 import java.util.List;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+@AllArgsConstructor
 
-    @Autowired
+public class ClientService implements IClientService {
+
     private ClientRepository clientRepository;
 
     @Override

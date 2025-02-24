@@ -4,7 +4,7 @@ import tn.esprit.arctic.first_project.entities.Commande;
 
 import java.util.List;
 
-public interface CommandeService {
+public interface ICommandeService {
     Commande save(Commande commande);
     Commande update(Commande commande);
     void delete(Long id);
