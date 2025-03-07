@@ -8,6 +8,8 @@ public class DetailComposant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetailComposant;
     private Float imc;
+
+    @Enumerated(EnumType.STRING)
     private TypeComposant typeComposant;
 
 

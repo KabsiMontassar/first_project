@@ -16,8 +16,7 @@ public class ClientController {
 
     @GetMapping("/retrieve-all-clients")
     public List<Client> getClients() {
-        List<Client> listClients = clientService.findAll();
-        return listClients;
+        return clientService.findAll();
     }
     @GetMapping("/retrieve-client/{client-id}")
     public Client retrieveClient(@PathVariable("client-id") Long clientId) {
@@ -25,8 +24,7 @@ public class ClientController {
     }
     @PostMapping("/add-client")
     public Client addClient(@RequestBody Client c) {
-        Client client = clientService.save(c);
-        return client;
+        return clientService.save(c);
     }
     @DeleteMapping("/remove-client/{client-id}")
     public void removeClient(@PathVariable("client-id") Long clientId) {
@@ -34,7 +32,6 @@ public class ClientController {
     }
     @PutMapping("/update-client")
     public Client updateClient(@RequestBody Client c) {
-        Client client= clientService.update(c);
-        return client;
+        return clientService.update(c);
     }
 }
