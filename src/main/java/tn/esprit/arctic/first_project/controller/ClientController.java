@@ -1,7 +1,6 @@
 package tn.esprit.arctic.first_project.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.arctic.first_project.entities.Client;
 import tn.esprit.arctic.first_project.services.IClientService;
