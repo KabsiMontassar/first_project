@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
-    List<Restaurant> findByNbPlacesMaxGreaterThanAndChainerestaurationDateCreationBefore(Integer capacite, LocalDate date);
+    List<Restaurant> findByNbPlacesMaxGreaterThanAndChainerestaurationDateCreationBefore(Long capacite, LocalDate date);
 
 }

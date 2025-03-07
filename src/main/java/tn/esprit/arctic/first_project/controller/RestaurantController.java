@@ -44,7 +44,7 @@ RestaurantRepository restaurantRepository;
 
     @GetMapping("/findByNbPlacesMaxGreaterThanAndChainerestaurationDateCreationBefore/{capacite}/{date}")
     public List<Restaurant> findByNbPlacesMaxGreaterThanAndChainerestaurationDateCreationBefore(
-            @PathVariable("capacite") Integer capacite,
+            @PathVariable("capacite") Long capacite,
             @PathVariable("date") LocalDate date)
     {
         return restaurantRepository.findByNbPlacesMaxGreaterThanAndChainerestaurationDateCreationBefore(capacite,date);
