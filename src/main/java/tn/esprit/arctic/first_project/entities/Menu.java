@@ -20,6 +20,7 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMenu;
     private String libelleMenu;
+    @Enumerated(EnumType.STRING)
     private TypeMenu typeMenu;
     private Float prixTotal;
 

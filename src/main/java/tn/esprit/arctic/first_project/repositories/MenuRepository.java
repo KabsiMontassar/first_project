@@ -12,12 +12,13 @@ import java.util.List;
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 
+
+    @Query("SELECT m FROM Menu m WHERE m.typeMenu = :typeMenu ORDER BY m.prixTotal ASC")
+    List<Menu> findByTypeMenuAndOrderByPrixTotal(TypeMenu typeMenu);
+
+
+
     List<Menu> findByTypeMenuAndPrixTotalGreaterThan(TypeMenu typeMenu, Float prix);
-
-    @Query("select m.libelleMenu from Menu m where m.typeMenu = :typeMenu order by m.prixTotal asc")
-    List <Menu> findByTypeMenuAndOrderByPrixTotal(TypeMenu typeMenu);
-
-
 
 
     @Query("select m.libelleMenu from Menu m  join m.composants c where c.detailcomposant  = :typeComposant")
