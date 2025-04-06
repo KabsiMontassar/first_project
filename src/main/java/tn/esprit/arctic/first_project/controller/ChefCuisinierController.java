@@ -34,4 +34,16 @@ public class ChefCuisinierController {
     public ChefCuisinier updateChefCuisinier(@RequestBody ChefCuisinier c) {
         return ChefCuisinierService.update(c);
     }
+    @DeleteMapping("/desaffecter-chef-menu/{idMenu}/{idChef}")
+    public ChefCuisinier desaffecterChefCuisinierDuMenu(
+            @PathVariable("idMenu") Long idMenu,
+            @PathVariable("idChef") Long idChef) {
+        return ChefCuisinierService.desaffecterChefCuisinierDuMenu(idMenu, idChef);
+    }
+    @PutMapping("/affecter-chef-menu/{idChef}/{idMenu}")
+    public ChefCuisinier affecterChefCuisinierAMenu(
+            @PathVariable("idChef") Long idChef,
+            @PathVariable("idMenu") Long idMenu) {
+        return ChefCuisinierService.affecterChefCuisinierAMenu(idChef, idMenu);
+    }
 }
