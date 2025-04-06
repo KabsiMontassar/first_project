@@ -24,5 +24,11 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     @Query("select m.libelleMenu from Menu m  join m.composants c where c.detailcomposant  = :typeComposant")
     List <Menu> findByTypeComposant(TypeComposant typeComposant);
 
+
+
+        //findbylibelle
+    @Query("SELECT m FROM Menu m WHERE m.libelleMenu = :libelleMenu")
     Menu findByLibelle(String libelleMenu);
+
+
 }

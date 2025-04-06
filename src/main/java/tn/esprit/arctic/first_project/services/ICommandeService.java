@@ -12,4 +12,5 @@ public interface ICommandeService {
     List<Commande> findAll();
 
      void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) ;
+     void affecterNoteACommande(Long idCommande, Long note);
     }

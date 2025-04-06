@@ -73,4 +73,16 @@ pourcentage de la remise
     }
 
 
+
+
+    @Override
+    public void affecterNoteACommande(Long idCommande, Long Note) {
+        Commande commande = commandeRepository.findById(idCommande).orElse(null);
+        if (commande != null) {
+            commande.setNote(Note);
+            commandeRepository.save(commande);
+        }
+    }
+
+
 }

@@ -54,7 +54,7 @@ public class ChefCuisinierService implements IChefCuisinierService {
 
         Set<Menu> menus = new HashSet<>();
 
-        if(chefCuisinier.getMenus()!=null){
+        if(chefCuisinier!=null && chefCuisinier.getMenus()!=null){
             menus = chefCuisinier.getMenus();
         }
 
@@ -76,7 +76,7 @@ public class ChefCuisinierService implements IChefCuisinierService {
 
         Set<Menu> menus = new HashSet<>();
 
-        if(chefCuisinier.getMenus()!=null){
+        if(chefCuisinier!=null &&  chefCuisinier.getMenus()!=null){
             menus = chefCuisinier.getMenus();
         }
 
