@@ -3,9 +3,11 @@ package tn.esprit.arctic.first_project.services.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.ChefCuisinier;
+import tn.esprit.arctic.first_project.entities.Composant;
 import tn.esprit.arctic.first_project.entities.Menu;
 import tn.esprit.arctic.first_project.entities.Restaurant;
 import tn.esprit.arctic.first_project.repositories.ChefCuisinierRepository;
+import tn.esprit.arctic.first_project.repositories.ComposantRepository;
 import tn.esprit.arctic.first_project.repositories.MenuRepository;
 import tn.esprit.arctic.first_project.services.IMenuService;
 
@@ -17,7 +19,8 @@ import java.util.*;
 public class MenuService implements IMenuService {
 
     private MenuRepository menuRepository;
-    private ChefCuisinierRepository   chefCuisinierService;
+    private ComposantRepository composantRepository;
+    private ChefCuisinierRepository chefCuisinierService;
 
     @Override
     public Menu save(Menu menu) {
@@ -44,9 +47,34 @@ public class MenuService implements IMenuService {
         return menuRepository.findAll();
     }
 
+    @Override
+    public Menu ajoutComposantsEtMiseAjourPrixMenu(Set<Composant> composants, Long idMenu) {
+        Menu menu = menuRepository.findById(idMenu).orElse(null);
+        if (menu == null) {
+            return null;
+        }
+
+        float totalPrice = 0;
+        for (Composant composant : composants) {
+            totalPrice += composant.getPrix();
+            composant.setMenu(menu);
+        }
+
+        if (totalPrice > 20) {
+            return null;
+        }
+
+        composantRepository.saveAll(composants);
 
 
 
+        if (menu.getComposants() == null) {
+            menu.setComposants(new HashSet<>());
+        }
+        menu.getComposants().addAll(composants);
+        menu.setPrixTotal(totalPrice);
 
+        return menuRepository.save(menu);
+    }
 
 }

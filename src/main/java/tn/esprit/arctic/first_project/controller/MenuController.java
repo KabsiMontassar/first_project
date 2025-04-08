@@ -2,6 +2,7 @@ package tn.esprit.arctic.first_project.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.arctic.first_project.entities.Composant;
 import tn.esprit.arctic.first_project.entities.Menu;
 import tn.esprit.arctic.first_project.entities.TypeComposant;
 import tn.esprit.arctic.first_project.entities.TypeMenu;
@@ -9,6 +10,7 @@ import tn.esprit.arctic.first_project.repositories.MenuRepository;
 import tn.esprit.arctic.first_project.services.IMenuService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -57,6 +59,13 @@ MenuRepository MenuRepo;
     public List<Menu> findByTypeMenuAndPrixTotalGreaterThan(@PathVariable("typeMenu") String TM, @PathVariable("prix") Float prix){
         TypeMenu typeMenu = TypeMenu.valueOf(TM.toUpperCase());
         return MenuRepo.findByTypeMenuAndPrixTotalGreaterThan(typeMenu,prix);
+    }
+
+    @PostMapping("/ajoutComposantsEtMiseAjourPrixMenu/{idMenu}")
+    public Menu ajoutComposantsEtMiseAjourPrixMenu(
+            @RequestBody Set<Composant> composants,
+            @PathVariable("idMenu") Long idMenu) {
+        return MenuService.ajoutComposantsEtMiseAjourPrixMenu(composants, idMenu);
     }
 
 }
