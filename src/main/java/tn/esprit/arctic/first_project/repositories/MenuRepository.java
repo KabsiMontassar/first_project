@@ -18,7 +18,6 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 
 
 
-    List<Menu> findByTypeMenuAndPrixTotalGreaterThan(TypeMenu typeMenu, Float prix);
 
 
     @Query("select m.libelleMenu from Menu m  join m.composants c where c.detailcomposant  = :typeComposant")
@@ -31,4 +30,6 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     Menu findByLibelle(String libelleMenu);
 
 
+    @Query("SELECT m FROM Menu m WHERE m.typeMenu = :typeMenu AND m.prixTotal > :prixTotal")
+    List<Menu> findByTypeMenuAndPrixTotalGreaterThan(TypeMenu typeMenu , Float prixTotal);
 }

@@ -4,10 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.ChefCuisinier;
 import tn.esprit.arctic.first_project.entities.Menu;
+import tn.esprit.arctic.first_project.entities.Restaurant;
+import tn.esprit.arctic.first_project.entities.TypeChef;
 import tn.esprit.arctic.first_project.repositories.ChefCuisinierRepository;
 import tn.esprit.arctic.first_project.repositories.MenuRepository;
+import tn.esprit.arctic.first_project.repositories.RestaurantRepository;
 import tn.esprit.arctic.first_project.services.IChefCuisinierService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +24,8 @@ public class ChefCuisinierService implements IChefCuisinierService {
     private ChefCuisinierRepository chefCuisinierRepository;
     private MenuRepository menuRepository;
     private ChefCuisinierRepository   chefCuisinierService;
+
+    private RestaurantRepository restaurantRepository;
 
     @Override
     public ChefCuisinier save(ChefCuisinier chefCuisinier) {
@@ -87,6 +93,26 @@ public class ChefCuisinierService implements IChefCuisinierService {
         chefCuisinierService.save(chefCuisinier);
 
         return chefCuisinier;
+    }
+
+
+    @Override
+    public  List<ChefCuisinier> listChefCuisinierByTypeChefAndRestaurant(TypeChef typeChef, String
+            nomRestaurant){
+        Restaurant restaurant = restaurantRepository.findByNomRestaurant(nomRestaurant);
+
+        Set<Menu> menus = restaurant.getMenus();
+
+        List<ChefCuisinier> chefCuisiniers = new ArrayList<>();
+
+        menus.stream().forEach(menu -> {
+            Set<ChefCuisinier> chefs = menu.getChefCuisiniers();
+            chefs.stream().filter(chef -> chef.getTypeChef() == typeChef).forEach(chef -> {
+                chefCuisiniers.add(chef);
+            });
+        });
+
+        return chefCuisiniers;
     }
 
 }

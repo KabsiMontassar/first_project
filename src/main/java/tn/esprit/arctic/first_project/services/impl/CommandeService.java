@@ -11,6 +11,7 @@ import tn.esprit.arctic.first_project.repositories.MenuRepository;
 import tn.esprit.arctic.first_project.services.ICommandeService;
 
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -82,6 +83,19 @@ pourcentage de la remise
             commande.setNote(Note);
             commandeRepository.save(commande);
         }
+    }
+
+
+
+    public Float montantDepenseParClientEntreDeuxDates(String identifiant, LocalDate date1, LocalDate
+            date2){
+        Client client = clientRepository.findByIdentifiant(identifiant);
+        List<Commande> commandes = commandeRepository.findByClientIdClientAndDateCommandeBetween(client.getIdClient(), date1, date2);
+        Float total = 0f;
+        for (Commande commande : commandes) {
+            total += commande.getTotalCommande();
+        }
+        return total;
     }
 
 
