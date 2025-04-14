@@ -97,7 +97,7 @@ public class ChefCuisinierService implements IChefCuisinierService {
 
 
     @Override
-    public  List<ChefCuisinier> listChefCuisinierByTypeChefAndRestaurant(TypeChef typeChef, String
+    public  List<ChefCuisinier> listChefCuisinierByTypeChefAndNomRestaurant(TypeChef typeChef, String
             nomRestaurant){
         Restaurant restaurant = restaurantRepository.findByNomRestaurant(nomRestaurant);
 

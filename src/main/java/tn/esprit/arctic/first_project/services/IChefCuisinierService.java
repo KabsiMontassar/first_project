@@ -15,7 +15,7 @@ public interface IChefCuisinierService {
     ChefCuisinier affecterChefCuisinierAMenu(Long idChefCuisinier, Long idMenu);
     ChefCuisinier desaffecterChefCuisinierDuMenu(Long idMenu, Long idChefCuisinier);
 
-    List<ChefCuisinier> listChefCuisinierByTypeChefAndRestaurant(TypeChef typeChef, String
+    List<ChefCuisinier> listChefCuisinierByTypeChefAndNomRestaurant(TypeChef typeChef, String
             nomRestaurant);
 
 }
