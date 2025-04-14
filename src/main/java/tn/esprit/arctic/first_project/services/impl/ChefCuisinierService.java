@@ -99,17 +99,18 @@ public class ChefCuisinierService implements IChefCuisinierService {
     @Override
     public  List<ChefCuisinier> listChefCuisinierByTypeChefAndNomRestaurant(TypeChef typeChef, String
             nomRestaurant){
-        Restaurant restaurant = restaurantRepository.findByNomRestaurant(nomRestaurant);
+        Restaurant restaurant = restaurantRepository.findByNom(nomRestaurant);
 
         Set<Menu> menus = restaurant.getMenus();
 
         List<ChefCuisinier> chefCuisiniers = new ArrayList<>();
 
-        menus.stream().forEach(menu -> {
+        menus.forEach(menu -> {
             Set<ChefCuisinier> chefs = menu.getChefCuisiniers();
-            chefs.stream().filter(chef -> chef.getTypeChef() == typeChef).forEach(chef -> {
-                chefCuisiniers.add(chef);
-            });
+            chefs.stream().filter(chef ->
+                    chef.getTypeChef() == typeChef).forEach(chef -> {
+                         chefCuisiniers.add(chef);
+                      });
         });
 
         return chefCuisiniers;
