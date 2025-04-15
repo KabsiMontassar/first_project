@@ -111,6 +111,31 @@ public class CommandeService implements ICommandeService {
     }
 
 
+    @Scheduled(cron = "*/15 * * * * ?")
+    public void menuPlusCommande() {
+        List<Commande> commandes = commandeRepository.findAll();
+        List<Menu> menus = menuRepository.findAll();
+
+        Menu menuPlusCommandé = null;
+        int maxCommandes = 0;
+
+        for (Menu menu : menus) {
+            int count = 0;
+            for (Commande commande : commandes) {
+                if (commande.getMenu().getIdMenu().equals(menu.getIdMenu())) {
+                    count++;
+                }
+            }
+            if (count > maxCommandes) {
+                maxCommandes = count;
+                menuPlusCommandé = menu;
+            }
+        }
+
+        System.out.println("Le menu le plus commandé dans votre restaurant est " + menuPlusCommandé.getLibelleMenu() + " commandé " + maxCommandes + " fois");
+    }
+
+
 
 
 }
