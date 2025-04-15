@@ -1,6 +1,9 @@
 package tn.esprit.arctic.first_project.services.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.arctic.first_project.entities.Client;
 import tn.esprit.arctic.first_project.entities.Commande;
@@ -12,11 +15,12 @@ import tn.esprit.arctic.first_project.services.ICommandeService;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-
+@Slf4j
 public class CommandeService implements ICommandeService {
 
     private CommandeRepository commandeRepository;
@@ -54,15 +58,7 @@ public class CommandeService implements ICommandeService {
     }
 
 
-    /*
-    Créer un service permettant l’ajout d’une commande et de l’associer au client et menu en
-paramètres et exposer le en respectant la signature suivante :
-void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant,
-String libelleMenu);
-PS ; Le total commande et le total remise est calculable selon le prix du menu envoyé et le
-pourcentage de la remise
 
-    * */
 
     public void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) {
         Client client = clientRepository.findByIdentifiant(identifiant);
@@ -97,6 +93,24 @@ pourcentage de la remise
         }
         return total;
     }
+
+    @Scheduled(cron = "*/15 * * * * ?")
+    void findCurrentYearCommandesOrderByNote(){
+
+        log.info("Commandes de l'année en cours triées par note :");
+        List<Commande> commandes = commandeRepository.findByDateCommandeBetween(
+                LocalDate.of(LocalDate.now().getYear(), 1, 1),
+                LocalDate.of(LocalDate.now().getYear(), 12, 31)
+        );
+
+
+        for (Commande commande : commandes) {
+            System.out.println(commande);
+        }
+
+    }
+
+
 
 
 }
