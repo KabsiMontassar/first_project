@@ -24,9 +24,10 @@ import java.util.List;
 public class CommandeService implements ICommandeService {
 
     private CommandeRepository commandeRepository;
-  private MenuRepository menuRepository;
+    private MenuRepository menuRepository;
 
-  private ClientRepository clientRepository;
+    private ClientRepository clientRepository;
+
     @Override
     public Commande save(Commande commande) {
         return commandeRepository.save(commande);
@@ -58,8 +59,6 @@ public class CommandeService implements ICommandeService {
     }
 
 
-
-
     public void ajouterCommandeEtaffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) {
         Client client = clientRepository.findByIdentifiant(identifiant);
         Menu menu = menuRepository.findByLibelle(libelleMenu);
@@ -68,8 +67,6 @@ public class CommandeService implements ICommandeService {
         commande.setTotalCommande(menu.getPrixTotal());
         commandeRepository.save(commande);
     }
-
-
 
 
     @Override
@@ -82,9 +79,8 @@ public class CommandeService implements ICommandeService {
     }
 
 
-
     public Float montantDepenseParClientEntreDeuxDates(String identifiant, LocalDate date1, LocalDate
-            date2){
+            date2) {
         Client client = clientRepository.findByIdentifiant(identifiant);
         List<Commande> commandes = commandeRepository.findByClientIdClientAndDateCommandeBetween(client.getIdClient(), date1, date2);
         Float total = 0f;
@@ -94,8 +90,10 @@ public class CommandeService implements ICommandeService {
         return total;
     }
 
-    @Scheduled(cron = "*/15 * * * * ?")
-    void findCurrentYearCommandesOrderByNote(){
+
+    //@Scheduled(cron = "*/15 * * * * ?")
+
+    void findCurrentYearCommandesOrderByNote() {
 
         log.info("Commandes de l'année en cours triées par note :");
         List<Commande> commandes = commandeRepository.findByDateCommandeBetween(
@@ -132,8 +130,34 @@ public class CommandeService implements ICommandeService {
             }
         }
 
-        System.out.println("Le menu le plus commandé dans votre restaurant est " + menuPlusCommandé.getLibelleMenu() + " commandé " + maxCommandes + " fois");
+
+        for (Menu menu : menus) {
+            if (menu.getIdMenu().equals(menuPlusCommandé.getIdMenu())) {
+                menu.setPrixTotal(menu.getPrixTotal() * 0.8f);
+                menuRepository.save(menu);
+            } else {
+                menu.setPrixTotal(menu.getPrixTotal() * 0.95f);
+                menuRepository.save(menu);
+            }
+
+            log.info("Le menu le plus commandé dans votre restaurant est " + menuPlusCommandé.getLibelleMenu() + " commandé " + maxCommandes + " fois");
+        }
+
+
     }
+
+
+    public void ajouterCommandeEtAffecterAClientEtMenu(Commande commande, String identifiant, String libelleMenu) {
+        Client client = clientRepository.findByIdentifiant(identifiant);
+        Menu menu = menuRepository.findByLibelle(libelleMenu);
+        commande.setClient(client);
+        commande.setMenu(menu);
+        float remise  =  - (commande.getTotalCommande() * commande.getPourcentageRemise() / 100);
+        commande.setTotalRemise(remise);
+        commande.setTotalCommande(commande.getTotalCommande() - remise);
+        commandeRepository.save(commande);
+    }
+
 
 
 
