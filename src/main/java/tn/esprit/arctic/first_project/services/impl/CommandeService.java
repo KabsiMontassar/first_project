@@ -152,7 +152,7 @@ public class CommandeService implements ICommandeService {
         Menu menu = menuRepository.findByLibelle(libelleMenu);
         commande.setClient(client);
         commande.setMenu(menu);
-        float remise  =  - (commande.getTotalCommande() * commande.getPourcentageRemise() / 100);
+        float remise  =  - (menu.getPrixTotal() * commande.getPourcentageRemise() / 100);
         commande.setTotalRemise(remise);
         commande.setTotalCommande(commande.getTotalCommande() - remise);
         commandeRepository.save(commande);
