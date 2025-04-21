@@ -91,10 +91,8 @@ public class CommandeService implements ICommandeService {
     }
 
 
-    //@Scheduled(cron = "*/15 * * * * ?")
-
+    @Scheduled(cron = "*/15 * * * * ?")
     void findCurrentYearCommandesOrderByNote() {
-
         log.info("Commandes de l'année en cours triées par note :");
         List<Commande> commandes = commandeRepository.findByDateCommandeBetween(
                 LocalDate.of(LocalDate.now().getYear(), 1, 1),
@@ -103,18 +101,33 @@ public class CommandeService implements ICommandeService {
 
 
         for (Commande commande : commandes) {
-            System.out.println(commande);
+            log.info("La commande faite le " + commande.getDateCommande() + " d'un monjtant gloabal de " +
+                    commande.getTotalCommande() + " a une note de " + commande.getNote());
         }
 
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Scheduled(cron = "*/15 * * * * ?")
     public void menuPlusCommande() {
+        log.info("Calcul du menu le plus commandé");
         List<Commande> commandes = commandeRepository.findAll();
         List<Menu> menus = menuRepository.findAll();
 
-        Menu menuPlusCommandé = null;
+        Menu menuPlusCommande = null;
         int maxCommandes = 0;
 
         for (Menu menu : menus) {
@@ -126,13 +139,13 @@ public class CommandeService implements ICommandeService {
             }
             if (count > maxCommandes) {
                 maxCommandes = count;
-                menuPlusCommandé = menu;
+                menuPlusCommande = menu;
             }
         }
 
 
         for (Menu menu : menus) {
-            if (menu.getIdMenu().equals(menuPlusCommandé.getIdMenu())) {
+            if (menu.getIdMenu().equals(menuPlusCommande.getIdMenu())) {
                 menu.setPrixTotal(menu.getPrixTotal() * 0.8f);
                 menuRepository.save(menu);
             } else {
@@ -140,7 +153,7 @@ public class CommandeService implements ICommandeService {
                 menuRepository.save(menu);
             }
 
-            log.info("Le menu le plus commandé dans votre restaurant est " + menuPlusCommandé.getLibelleMenu() + " commandé " + maxCommandes + " fois");
+            log.info("Le menu le plus commandé dans votre restaurant est " + menuPlusCommande.getLibelleMenu() + " commandé " + maxCommandes + " fois");
         }
 
 
