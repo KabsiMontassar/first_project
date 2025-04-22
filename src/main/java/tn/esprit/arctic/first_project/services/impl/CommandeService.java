@@ -91,7 +91,7 @@ public class CommandeService implements ICommandeService {
     }
 
 
-    @Scheduled(cron = "*/15 * * * * ?")
+    //@Scheduled(cron = "*/15 * * * * ?")
     void findCurrentYearCommandesOrderByNote() {
         log.info("Commandes de l'année en cours triées par note :");
         List<Commande> commandes = commandeRepository.findByDateCommandeBetween(
@@ -121,7 +121,7 @@ public class CommandeService implements ICommandeService {
 
 
 
-    @Scheduled(cron = "*/15 * * * * ?")
+   // @Scheduled(cron = "*/15 * * * * ?")
     public void menuPlusCommande() {
         log.info("Calcul du menu le plus commandé");
         List<Commande> commandes = commandeRepository.findAll();
